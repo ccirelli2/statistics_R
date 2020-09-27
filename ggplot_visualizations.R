@@ -182,6 +182,34 @@ p11
 # Faceting 
 ######################################################################
 
+p12 <- ggplot(jones.cnt.by.wkday, aes(x=wk_day, y=n, group=violation)) + 
+       geom_line() +
+       facet_wrap(~violation)
+p12
+
+
+# Group By Race As Well
+jones.viol.wkday.race <- jones.county %>%
+                         group_by(wk_day, violation, driver_race) %>%
+                         tally()
+
+p13 <- ggplot(jones.viol.wkday.race, aes(x=wk_day, y=n, color=driver_race, group=driver_race)) + 
+  geom_line() +
+  facet_wrap(~violation)
+p13
+
+
+
+
+######################################################################
+# THEMES
+######################################################################
+
+
+p13 + theme_bw()
+
+
+
 
 
 
